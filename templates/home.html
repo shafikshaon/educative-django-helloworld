@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+</head>
+<body>
+<div style="text-align: center">
+    {% if perms.blog.can_add %}
+        <strong>{{ request.user }}</strong> have blog add permission.
+    {% endif %}
+
+    <br>
+
+    <a href="{% url 'logout' %}">Sign Out</a>
+    <a href="{% url 'password_change' %}">Change Password</a>
+</div>
+
+{% if perms.blog %}
+    {% if perms.blog.add_post %}
+        <p>You can add blog post.</p>
+    {% endif %}
+{% else %}
+    <p>You don't have permission.</p>
+{% endif %}
+</body>
+</html>
